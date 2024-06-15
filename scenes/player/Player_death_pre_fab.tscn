@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsdd53qrh60xs"]
+
+[ext_resource type="Script" path="res://scripts/player_death_pre_fab.gd" id="1_v1w4s"]
+[ext_resource type="Texture2D" uid="uid://dfw77pfe886et" path="res://assets/blood_sprites/Zombie-Tileset---_0379_Capa-380.png" id="1_woy2o"]
+[ext_resource type="Texture2D" uid="uid://cqm5upqm17ey7" path="res://assets/blood_sprites/Zombie-Tileset---_0380_Capa-381.png" id="2_yn3qa"]
+[ext_resource type="Texture2D" uid="uid://waqpc0l2cbtf" path="res://assets/blood_sprites/Zombie-Tileset---_0383_Capa-384.png" id="5_uixg3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n4xl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_woy2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yn3qa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uixg3")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="DeathPreFab" type="Node2D"]
+script = ExtResource("1_v1w4s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7n4xl")
+autoplay = "default"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

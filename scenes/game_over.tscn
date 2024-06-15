@@ -1,0 +1,247 @@
+[gd_scene load_steps=13 format=3 uid="uid://7mdiyhihvnn1"]
+
+[ext_resource type="Texture2D" uid="uid://cq28xtfytx4lj" path="res://assets/UI_Assets/panel_glass.png" id="1_2dr5f"]
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_21gib"]
+[ext_resource type="Texture2D" uid="uid://dfbqc3pkaemao" path="res://assets/UI_Assets/blank_button.png" id="3_0bqai"]
+[ext_resource type="LabelSettings" uid="uid://cnfdbdkvdq1x0" path="res://assets/fonts/game_over_Label.tres" id="4_1n4xu"]
+[ext_resource type="LabelSettings" uid="uid://dysojc0nxp2g5" path="res://assets/fonts/button_text.tres" id="4_tmfin"]
+[ext_resource type="LabelSettings" uid="uid://bbhjqixvdh3qs" path="res://assets/fonts/game_over_text.tres" id="5_iic3p"]
+[ext_resource type="AudioStream" uid="uid://dsekhygkletqv" path="res://assets/sounds/game_over_sound.wav" id="6_pvln4"]
+[ext_resource type="AudioStream" uid="uid://c86sl00wop8c" path="res://assets/sounds/ui-pop-up.wav" id="8_sxal0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wxyi0"]
+texture = ExtResource("1_2dr5f")
+
+[sub_resource type="Animation" id="Animation_c8vyg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackGround:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_roige"]
+resource_name = "game_over_anim"
+length = 2.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackGround:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.65098)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BulletSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b6rcj"]
+_data = {
+"RESET": SubResource("Animation_c8vyg"),
+"game_over_anim": SubResource("Animation_roige")
+}
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_21gib")
+
+[node name="BackGround" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MenuPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -165.0
+offset_right = 156.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wxyi0")
+
+[node name="MainMenuButton" type="Button" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -59.5
+offset_top = -83.0
+offset_right = 60.5
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("3_0bqai")
+flat = true
+
+[node name="MainMenuButtonLabel" type="Label" parent="MenuPanel/MainMenuButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -6.0
+offset_right = 49.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+label_settings = ExtResource("4_tmfin")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverText" type="Label" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 35.0
+offset_bottom = 58.0
+grow_horizontal = 2
+text = "GAME OVER"
+label_settings = ExtResource("4_1n4xu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeSurvivedLabel" type="Label" parent="MenuPanel"]
+layout_mode = 2
+offset_left = 47.0
+offset_top = 123.0
+offset_right = 203.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+text = "Time Survived"
+label_settings = ExtResource("5_iic3p")
+
+[node name="EnemiesKilledLabel" type="Label" parent="MenuPanel"]
+layout_mode = 2
+offset_left = 47.0
+offset_top = 147.0
+offset_right = 215.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+text = "Enemies Killed"
+label_settings = ExtResource("5_iic3p")
+
+[node name="JunkCollectedLabel" type="Label" parent="MenuPanel"]
+layout_mode = 2
+offset_left = 47.0
+offset_top = 171.0
+offset_right = 215.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+text = "Junk Collected
+"
+label_settings = ExtResource("5_iic3p")
+
+[node name="TimeSurvivedCounter" type="Label" parent="MenuPanel"]
+layout_mode = 2
+offset_left = 241.0
+offset_top = 123.0
+offset_right = 277.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+text = "000"
+label_settings = ExtResource("4_tmfin")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemiesKilledCounter" type="Label" parent="MenuPanel"]
+layout_mode = 2
+offset_left = 241.0
+offset_top = 147.0
+offset_right = 277.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+text = "000"
+label_settings = ExtResource("4_tmfin")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JunkCollectedCounter" type="Label" parent="MenuPanel"]
+layout_mode = 2
+offset_left = 241.0
+offset_top = 171.0
+offset_right = 277.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "000
+"
+label_settings = ExtResource("4_tmfin")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pvln4")
+autoplay = true
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b6rcj")
+}
+autoplay = "game_over_anim"
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_sxal0")
+
+[connection signal="focus_entered" from="MenuPanel/MainMenuButton" to="." method="_on_main_menu_button_focus_entered"]
+[connection signal="mouse_entered" from="MenuPanel/MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuPanel/MainMenuButton" to="." method="_on_main_menu_button_mouse_exited"]
+[connection signal="pressed" from="MenuPanel/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3do61bhjvax5"]
+
+[ext_resource type="Texture2D" uid="uid://cyphev15444hy" path="res://assets/enemies/Turret Zombie Vomit Shooting Animation Frames/Zombie-Tileset---_0475_Capa-476.png" id="1_k4wm5"]
+[ext_resource type="Texture2D" uid="uid://kgpjppxnnjkq" path="res://assets/enemies/Turret Zombie Vomit Shooting Animation Frames/Zombie-Tileset---_0474_Capa-475.png" id="2_becyl"]
+[ext_resource type="Texture2D" uid="uid://d0fkdqypmltxk" path="res://assets/enemies/Turret Zombie Vomit Shooting Animation Frames/Zombie-Tileset---_0473_Capa-474.png" id="3_hityh"]
+[ext_resource type="Script" path="res://scripts/spawn_animation.gd" id="4_j3fsl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_38u4o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k4wm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_becyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hityh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_becyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hityh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SpawnAnimation" type="AnimatedSprite2D"]
+modulate = Color(0.411765, 0, 0.0196078, 1)
+rotation = 1.5708
+scale = Vector2(1.7, 1.7)
+sprite_frames = SubResource("SpriteFrames_38u4o")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("4_j3fsl")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

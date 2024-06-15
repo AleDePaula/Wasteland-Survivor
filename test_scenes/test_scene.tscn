@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj7anaiht7ip1"]
+
+[ext_resource type="PackedScene" uid="uid://cjr2g186m6mv4" path="res://scenes/mob_spawner.tscn" id="2_xrgat"]
+
+[node name="Test_Scene" type="Node2D"]
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(600, 300)
+
+[node name="MobSpawner" parent="." instance=ExtResource("2_xrgat")]
+position = Vector2(164, 95)
+scale = Vector2(0.7, 0.7)
+spawner_power = 1000

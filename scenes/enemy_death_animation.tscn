@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://guyqyt8dhvqy"]
+
+[ext_resource type="Texture2D" uid="uid://5unkooybw85v" path="res://assets/enemy_explosion/Zombie-Tileset---_0363_Capa-364.png" id="1_tdxr0"]
+[ext_resource type="Texture2D" uid="uid://dxtlo50mgkyx6" path="res://assets/enemy_explosion/Zombie-Tileset---_0358_Capa-359.png" id="2_ly1td"]
+[ext_resource type="Texture2D" uid="uid://m7jljkcuwu" path="res://assets/enemy_explosion/Zombie-Tileset---_0359_Capa-360.png" id="3_841r2"]
+[ext_resource type="Texture2D" uid="uid://dmjrwnulycihe" path="res://assets/enemy_explosion/Zombie-Tileset---_0360_Capa-361.png" id="4_yc55i"]
+[ext_resource type="Texture2D" uid="uid://cd4dp5flbn7oq" path="res://assets/enemy_explosion/Zombie-Tileset---_0361_Capa-362.png" id="5_h1edm"]
+[ext_resource type="Texture2D" uid="uid://bbxgbxy0ms5u3" path="res://assets/enemy_explosion/Zombie-Tileset---_0362_Capa-363.png" id="6_0qmku"]
+[ext_resource type="AudioStream" uid="uid://b06ovvv58l8iv" path="res://assets/sounds/zombie_dead.wav" id="7_a1fda"]
+
+[sub_resource type="Animation" id="Animation_5mdhm"]
+resource_name = "death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_ly1td"), ExtResource("3_841r2"), ExtResource("4_yc55i"), ExtResource("5_h1edm"), ExtResource("6_0qmku"), ExtResource("1_tdxr0")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_idl3g"]
+_data = {
+"death": SubResource("Animation_5mdhm")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.411765, 0, 0, 1)
+texture = ExtResource("1_tdxr0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_idl3g")
+}
+autoplay = "death"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_a1fda")
+volume_db = -10.0
+autoplay = true
+max_distance = 200.0

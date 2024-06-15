@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcv3acx0jkbuu"]
+
+[ext_resource type="PackedScene" uid="uid://cxsam4y7b6714" path="res://scenes/game_ui.tscn" id="2_7fyi3"]
+[ext_resource type="PackedScene" uid="uid://b3e3wb3xliyqp" path="res://scenes/enemy_scenes/turret.tscn" id="2_bhg7v"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Turret" parent="." instance=ExtResource("2_bhg7v")]
+position = Vector2(902, 344)
+
+[node name="GameUI" parent="." instance=ExtResource("2_7fyi3")]
+offset_left = 218.0
+offset_top = 281.0
+offset_right = 218.0
+offset_bottom = 281.0
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(600, 300)

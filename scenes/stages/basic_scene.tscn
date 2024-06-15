@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c4j5h471emsi3"]
+
+[node name="InfiniteApocalipse" type="Node2D"]
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+
+[node name="MaxCameraTop" type="Marker2D" parent="."]
+position = Vector2(533, -16)
+
+[node name="MaxCameraBottom" type="Marker2D" parent="."]
+position = Vector2(608, 656)
+
+[node name="MaxCameraLeft" type="Marker2D" parent="."]
+position = Vector2(-16, 352)
+
+[node name="MaxCameraRight" type="Marker2D" parent="."]
+position = Vector2(1166, 393)

@@ -1,0 +1,340 @@
+[gd_scene load_steps=29 format=3 uid="uid://dk401nx8uuot8"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_wonck"]
+[ext_resource type="Texture2D" uid="uid://dfbqc3pkaemao" path="res://assets/UI_Assets/blank_button.png" id="2_3wlg6"]
+[ext_resource type="AudioStream" uid="uid://c86sl00wop8c" path="res://assets/sounds/ui-pop-up.wav" id="2_p5dqc"]
+[ext_resource type="LabelSettings" uid="uid://dysojc0nxp2g5" path="res://assets/fonts/button_text.tres" id="3_anpq3"]
+[ext_resource type="FontFile" uid="uid://deaw8q1850h51" path="res://assets/fonts/PressStart2P-Regular.ttf" id="4_gds7j"]
+[ext_resource type="Texture2D" uid="uid://2y1lrm6fc4yn" path="res://assets/UI_Assets/wasd_img.png" id="5_fqc23"]
+[ext_resource type="Texture2D" uid="uid://cp7fjn8psswf0" path="res://assets/UI_Assets/mouse.png" id="6_vp3xq"]
+[ext_resource type="Texture2D" uid="uid://p1vk011fu5a2" path="res://assets/UI_Assets/right_stick_anim.png" id="7_y7wam"]
+[ext_resource type="Texture2D" uid="uid://dv57yy07rvj3x" path="res://assets/UI_Assets/left_stick_anim.png" id="8_fk6gm"]
+[ext_resource type="Texture2D" uid="uid://2o1nac6k3358" path="res://assets/UI_Assets/mouse_left_button.png" id="9_ubbtr"]
+[ext_resource type="Texture2D" uid="uid://btjotkyctd5en" path="res://assets/UI_Assets/left_trigger.png" id="10_wmedt"]
+[ext_resource type="Texture2D" uid="uid://uk6ji2gf6tqu" path="res://assets/UI_Assets/space_key.png" id="11_j53yv"]
+[ext_resource type="Texture2D" uid="uid://cxs8aua6cvs3o" path="res://assets/UI_Assets/right_trigger.png" id="12_g1sg3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ib5u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ar0fq"]
+font = ExtResource("4_gds7j")
+font_size = 42
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ty4pg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8xhch"]
+font = ExtResource("4_gds7j")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_4g75t"]
+font = ExtResource("4_gds7j")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y77fc"]
+atlas = ExtResource("8_fk6gm")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omn2q"]
+atlas = ExtResource("8_fk6gm")
+region = Rect2(0, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qimgs"]
+atlas = ExtResource("8_fk6gm")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8lx8"]
+atlas = ExtResource("8_fk6gm")
+region = Rect2(36, 18, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m204l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y77fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omn2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qimgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8lx8")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul0np"]
+atlas = ExtResource("7_y7wam")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j62uu"]
+atlas = ExtResource("7_y7wam")
+region = Rect2(0, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubwk6"]
+atlas = ExtResource("7_y7wam")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1r5y"]
+atlas = ExtResource("7_y7wam")
+region = Rect2(36, 18, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ofm1t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul0np")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j62uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubwk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1r5y")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 2
+script = ExtResource("1_wonck")
+
+[node name="ButtonPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -92.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="ButtonPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -40.0
+offset_right = 60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/icon_focus_color = Color(0.721569, 0, 0, 1)
+icon = ExtResource("2_3wlg6")
+flat = true
+icon_alignment = 1
+
+[node name="PlayButtonLabel" type="Label" parent="ButtonPanel/PlayButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -5.5
+offset_right = 22.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+label_settings = ExtResource("3_anpq3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="ButtonPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_right = 60.0
+offset_bottom = 40.0
+grow_horizontal = 2
+icon = ExtResource("2_3wlg6")
+flat = true
+
+[node name="ExitButtonLabel" type="Label" parent="ButtonPanel/ExitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -5.5
+offset_right = 22.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit
+"
+label_settings = ExtResource("3_anpq3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_p5dqc")
+
+[node name="LogoContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 95.0
+offset_right = 976.0
+offset_bottom = 137.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_1ib5u")
+
+[node name="GameName" type="Label" parent="LogoContainer"]
+layout_mode = 2
+text = "Wasteland Survivor"
+label_settings = SubResource("LabelSettings_ar0fq")
+
+[node name="InstructionsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.5
+offset_top = -24.5
+offset_right = 250.5
+offset_bottom = 278.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ty4pg")
+
+[node name="Instructions" type="Label" parent="InstructionsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 26.0
+offset_right = 144.0
+offset_bottom = 50.0
+grow_horizontal = 2
+text = "Instructions
+"
+label_settings = SubResource("LabelSettings_8xhch")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovePlayerLabel" type="Label" parent="InstructionsPanel"]
+layout_mode = 2
+offset_left = 230.0
+offset_top = 86.0
+offset_right = 494.0
+offset_bottom = 110.0
+text = "Move Player"
+label_settings = SubResource("LabelSettings_4g75t")
+
+[node name="WASDSprite" type="Sprite2D" parent="InstructionsPanel"]
+position = Vector2(104, 94)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_fqc23")
+
+[node name="LeftStickSprite" type="AnimatedSprite2D" parent="InstructionsPanel"]
+position = Vector2(179, 97)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_m204l")
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.903171
+
+[node name="MoveAimLabel" type="Label" parent="InstructionsPanel"]
+layout_mode = 2
+offset_left = 230.0
+offset_top = 150.0
+offset_right = 468.0
+offset_bottom = 174.0
+text = "Move Aim"
+label_settings = SubResource("LabelSettings_4g75t")
+
+[node name="RightStickSprite" type="AnimatedSprite2D" parent="InstructionsPanel"]
+position = Vector2(179, 161)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_ofm1t")
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.0175228
+
+[node name="MouseMove" type="Sprite2D" parent="InstructionsPanel"]
+position = Vector2(105, 161)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_vp3xq")
+
+[node name="ShootLabel" type="Label" parent="InstructionsPanel"]
+layout_mode = 2
+offset_left = 230.0
+offset_top = 212.0
+offset_right = 350.0
+offset_bottom = 236.0
+text = "Shoot
+"
+label_settings = SubResource("LabelSettings_4g75t")
+
+[node name="LeftMouseSprite" type="Sprite2D" parent="InstructionsPanel"]
+position = Vector2(106, 227)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_ubbtr")
+
+[node name="LeftTriggerSprite" type="Sprite2D" parent="InstructionsPanel"]
+position = Vector2(178, 224)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_wmedt")
+
+[node name="DodgeLabel" type="Label" parent="InstructionsPanel"]
+layout_mode = 2
+offset_left = 230.0
+offset_top = 278.0
+offset_right = 350.0
+offset_bottom = 302.0
+text = "Dodge"
+label_settings = SubResource("LabelSettings_4g75t")
+
+[node name="SpaceSprite" type="Sprite2D" parent="InstructionsPanel"]
+position = Vector2(106, 289)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_j53yv")
+
+[node name="RightTriggerSprite" type="Sprite2D" parent="InstructionsPanel"]
+position = Vector2(178, 288)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_g1sg3")
+
+[connection signal="focus_entered" from="ButtonPanel/PlayButton" to="." method="_on_play_button_focus_entered"]
+[connection signal="focus_exited" from="ButtonPanel/PlayButton" to="." method="_on_play_button_focus_exited"]
+[connection signal="mouse_entered" from="ButtonPanel/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonPanel/PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="pressed" from="ButtonPanel/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="focus_entered" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_focus_entered"]
+[connection signal="focus_exited" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_focus_exited"]
+[connection signal="mouse_entered" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_mouse_exited"]
+[connection signal="pressed" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_pressed"]

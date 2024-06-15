@@ -1,0 +1,118 @@
+[gd_scene load_steps=17 format=3 uid="uid://ct2vc1sg6t80i"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_0f3mq"]
+[ext_resource type="PackedScene" uid="uid://guyqyt8dhvqy" path="res://scenes/enemy_death_animation.tscn" id="2_3pra1"]
+[ext_resource type="PackedScene" uid="uid://bqocrwqyb0xyx" path="res://scenes/cards/damage_card.tscn" id="3_tn1jw"]
+[ext_resource type="Texture2D" uid="uid://b4ausgmxut3pw" path="res://assets/enemies/Skinny Walking Zombie Animation/Zombie-Tileset---_0395_Capa-396.png" id="4_vjkl2"]
+[ext_resource type="Texture2D" uid="uid://cxkp5pnvqe4ly" path="res://assets/enemies/Skinny Walking Zombie Animation/Zombie-Tileset---_0396_Capa-397.png" id="5_yt4ae"]
+[ext_resource type="Texture2D" uid="uid://bum6do4rqldtv" path="res://assets/enemies/Skinny Walking Zombie Animation/Zombie-Tileset---_0397_Capa-398.png" id="6_g3p00"]
+[ext_resource type="Texture2D" uid="uid://cxjq6ssp8qsb7" path="res://assets/enemies/Skinny Walking Zombie Animation/Zombie-Tileset---_0398_Capa-399.png" id="7_j7w7a"]
+[ext_resource type="Texture2D" uid="uid://dvc2kmpqa8flx" path="res://assets/enemies/Skinny Walking Zombie Animation/Zombie-Tileset---_0401_Capa-402.png" id="8_oujx6"]
+[ext_resource type="Texture2D" uid="uid://b12nusftutesy" path="res://assets/enemies/Skinny Walking Zombie Animation/Zombie-Tileset---_0402_Capa-403.png" id="9_cbj1t"]
+[ext_resource type="Script" path="res://scripts/drop_loot.gd" id="10_wlgg4"]
+[ext_resource type="PackedScene" uid="uid://basulhldnnc6y" path="res://scenes/cokeCan.tscn" id="11_wy3g1"]
+[ext_resource type="PackedScene" uid="uid://fvpuy1vk613f" path="res://scenes/junk.tscn" id="12_4u0hj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t8qo"]
+size = Vector2(4.44665, 21.8803)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tiibx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vjkl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yt4ae")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_g3p00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j7w7a")
+}],
+"loop": true,
+"name": &"walk_side",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_oujx6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cbj1t")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hk701"]
+radius = 12.6412
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpuct"]
+radius = 4.0
+height = 16.0
+
+[node name="Skinny" type="CharacterBody2D" groups=["enemies", "mobs"]]
+process_mode = 1
+self_modulate = Color(0.396078, 0, 0, 1)
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 22
+floor_constant_speed = true
+floor_max_angle = 0.0
+floor_snap_length = 0.0
+platform_on_leave = 2
+platform_floor_layers = 4294967040
+script = ExtResource("1_0f3mq")
+death_prefab = ExtResource("2_3pra1")
+damage_card = ExtResource("3_tn1jw")
+enemy_xp = 2
+enemy_health = 4.0
+enemy_damage = 3.0
+enemy_speed = 5.0
+enemy_cooldown = 1.3
+spawner_power_cost = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.153845, 2.75098e-07)
+scale = Vector2(0.96875, 0.703125)
+shape = SubResource("RectangleShape2D_6t8qo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tiibx")
+animation = &"walk_up"
+autoplay = "walk_down"
+frame_progress = 0.305577
+
+[node name="AttackHitBox" type="Area2D" parent="."]
+scale = Vector2(1.27932, 1.27932)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
+position = Vector2(-0.601281, 0)
+shape = SubResource("CircleShape2D_hk701")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="EnemyHitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
+position = Vector2(1.19209e-07, -4.76837e-07)
+shape = SubResource("CapsuleShape2D_lpuct")
+debug_color = Color(0, 1, 0, 0)
+
+[node name="Loot" type="Node" parent="."]
+script = ExtResource("10_wlgg4")
+loot_table = Array[PackedScene]([ExtResource("11_wy3g1"), ExtResource("12_4u0hj")])
+loot_chances = Array[float]([10.0, 50.0, 70.0, 85.0, 100.0])
+
+[connection signal="drop_loot" from="." to="Loot" method="_on_enemy_drop_loot"]
+[connection signal="area_entered" from="EnemyHitBox" to="." method="_on_enemy_hit_box_area_entered"]
