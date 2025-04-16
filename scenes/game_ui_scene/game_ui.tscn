@@ -1,0 +1,277 @@
+[gd_scene load_steps=17 format=3 uid="uid://cxsam4y7b6714"]
+
+[ext_resource type="Script" path="res://scripts/game_ui.gd" id="1_bjyj5"]
+[ext_resource type="Texture2D" uid="uid://mapibh5evwa" path="res://assets/UI_Assets/life_bar_frame.png" id="2_h06v1"]
+[ext_resource type="Texture2D" uid="uid://c6wk7pq3radop" path="res://assets/UI_Assets/life_bar_fill.png" id="3_r0eck"]
+[ext_resource type="FontFile" uid="uid://deaw8q1850h51" path="res://assets/fonts/PressStart2P-Regular.ttf" id="4_331hq"]
+[ext_resource type="Texture2D" uid="uid://cxlw7v1wdinja" path="res://assets/UI_Assets/xp_bar_fill.png" id="5_8vydi"]
+[ext_resource type="Texture2D" uid="uid://3gh6jtgr12k5" path="res://assets/UI_Assets/dodge_star_empty.png" id="6_stpve"]
+[ext_resource type="Texture2D" uid="uid://ccr2golwj3vn4" path="res://assets/UI_Assets/dodge_star_full.png" id="7_i4cq7"]
+[ext_resource type="LabelSettings" uid="uid://birhfx4x8cflb" path="res://assets/fonts/timer_Label.tres" id="8_naucy"]
+[ext_resource type="LabelSettings" uid="uid://br0sx102uu1bx" path="res://assets/fonts/game_text.tres" id="9_aknjv"]
+[ext_resource type="Texture2D" uid="uid://boida7012fsh4" path="res://assets/junk/Zombie-Tileset---_0355_Capa-356.png" id="10_kr23p"]
+[ext_resource type="Texture2D" uid="uid://jqqigstrxwhi" path="res://assets/UI_Assets/rad_bar_fill.png" id="11_mffh2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_boflg"]
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+modulate_color = Color(0.176471, 0.160784, 0.141176, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjsxg"]
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7dpuj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x6ldx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uvsk4"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bjyj5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HPXPPanel" type="Panel" parent="CanvasLayer"]
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 156.0
+offset_bottom = 63.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_boflg")
+
+[node name="HPBar" type="TextureProgressBar" parent="CanvasLayer/HPXPPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -27.0
+offset_right = 48.0
+offset_bottom = -19.0
+grow_vertical = 2
+scale = Vector2(3, 3)
+value = 90.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("2_h06v1")
+texture_progress = ExtResource("3_r0eck")
+
+[node name="HPLabel" type="Label" parent="CanvasLayer/HPXPPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -23.0
+offset_right = 41.5
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_331hq")
+theme_override_font_sizes/font_size = 17
+text = "10/10"
+
+[node name="XPBar" type="TextureProgressBar" parent="CanvasLayer/HPXPPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -2.0
+offset_right = 48.0
+offset_bottom = 6.0
+grow_vertical = 2
+scale = Vector2(3, 3)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+value = 90.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("2_h06v1")
+texture_progress = ExtResource("5_8vydi")
+
+[node name="XPLabel" type="Label" parent="CanvasLayer/HPXPPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = 7.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_331hq")
+theme_override_font_sizes/font_size = 17
+text = "10/10"
+
+[node name="DodgeBar" type="TextureProgressBar" parent="CanvasLayer/HPXPPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 82.5
+offset_top = -21.0
+offset_right = 101.5
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+max_value = 0.0
+step = 0.01
+fill_mode = 5
+texture_under = ExtResource("7_i4cq7")
+texture_progress = ExtResource("6_stpve")
+
+[node name="TimePanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_cjsxg")
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/TimePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 10.6667
+offset_right = 60.0
+offset_bottom = 34.6667
+grow_horizontal = 2
+text = "00:00"
+label_settings = ExtResource("8_naucy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelPanel" type="Panel" parent="CanvasLayer"]
+offset_left = 10.0
+offset_top = 64.0
+offset_right = 100.0
+offset_bottom = 98.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7dpuj")
+
+[node name="LevelShowLabel" type="Label" parent="CanvasLayer/LevelPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 38.0
+offset_bottom = 10.5
+grow_vertical = 2
+label_settings = ExtResource("9_aknjv")
+
+[node name="JunkPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0185185
+offset_left = -112.0
+offset_top = 10.0
+offset_right = 1.0
+offset_bottom = 42.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x6ldx")
+metadata/_edit_use_anchors_ = true
+
+[node name="JunkLabel" type="Label" parent="CanvasLayer/JunkPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = 8.0
+offset_right = 37.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "123"
+label_settings = ExtResource("9_aknjv")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/JunkPanel"]
+position = Vector2(17, 25)
+scale = Vector2(3, 2.854)
+texture = ExtResource("10_kr23p")
+
+[node name="RadPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 0.899765
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.304
+offset_top = -2.04803
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uvsk4")
+metadata/_edit_use_anchors_ = true
+
+[node name="RadBar" type="TextureProgressBar" parent="CanvasLayer/RadPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -0.5
+offset_right = -759.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+size_flags_vertical = 8
+value = 90.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("2_h06v1")
+texture_progress = ExtResource("11_mffh2")
+
+[node name="RadLabel" type="Label" parent="CanvasLayer/RadPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 23.0
+offset_top = -24.5
+offset_right = 77.0
+offset_bottom = -6.5
+grow_vertical = 2
+text = "Radiation:"
+label_settings = ExtResource("9_aknjv")
+
+[node name="TimeTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TimeTimer" to="." method="_on_time_timer_timeout"]

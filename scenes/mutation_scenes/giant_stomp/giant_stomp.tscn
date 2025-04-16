@@ -1,0 +1,128 @@
+[gd_scene load_steps=18 format=3 uid="uid://c6newpjcvs42o"]
+
+[ext_resource type="Script" path="res://scripts/giant_stomp.gd" id="1_25844"]
+[ext_resource type="Texture2D" uid="uid://u13hrwbj2x7c" path="res://assets/mutation_sprites/smokes.png" id="2_uayle"]
+[ext_resource type="AudioStream" uid="uid://2lioj1kbpt3y" path="res://assets/sounds/boom5.wav" id="4_ygxy2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fcbf8"]
+radius = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvgt5"]
+atlas = ExtResource("2_uayle")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fc2v"]
+atlas = ExtResource("2_uayle")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh3dr"]
+atlas = ExtResource("2_uayle")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdw82"]
+atlas = ExtResource("2_uayle")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x6i4"]
+atlas = ExtResource("2_uayle")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44ai7"]
+atlas = ExtResource("2_uayle")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx7rd"]
+atlas = ExtResource("2_uayle")
+region = Rect2(384, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s4yt"]
+atlas = ExtResource("2_uayle")
+region = Rect2(448, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqicm"]
+atlas = ExtResource("2_uayle")
+region = Rect2(512, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuk6n"]
+atlas = ExtResource("2_uayle")
+region = Rect2(576, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thc3c"]
+atlas = ExtResource("2_uayle")
+region = Rect2(640, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po0so"]
+atlas = ExtResource("2_uayle")
+region = Rect2(704, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7b3dw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvgt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fc2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh3dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdw82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x6i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44ai7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx7rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s4yt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqicm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuk6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thc3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po0so")
+}],
+"loop": false,
+"name": &"stomp_animation",
+"speed": 24.0
+}]
+
+[node name="GiantStomp" type="Area2D"]
+collision_layer = 128
+collision_mask = 258
+input_pickable = false
+script = ExtResource("1_25844")
+base_area = 1.0
+base_damage = 15.0
+base_damage_interval = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fcbf8")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="StompAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7b3dw")
+animation = &"stomp_animation"
+frame = 11
+frame_progress = 1.0
+
+[node name="StompAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ygxy2")
+volume_db = -10.0
+pitch_scale = 1.5
+
+[node name="StompTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="StompTimer" to="." method="_on_stomp_timer_timeout"]

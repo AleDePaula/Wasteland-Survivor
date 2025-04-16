@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1pirqupd40nl"]
+
+[ext_resource type="Texture2D" uid="uid://dfbqc3pkaemao" path="res://assets/UI_Assets/blank_button.png" id="1_oho8t"]
+[ext_resource type="LabelSettings" uid="uid://bbhjqixvdh3qs" path="res://assets/fonts/game_over_text.tres" id="2_32wwk"]
+[ext_resource type="Script" path="res://scripts/level_up_button.gd" id="2_q65a6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nk717"]
+texture = ExtResource("1_oho8t")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 112, 32)
+modulate_color = Color(1, 1, 1, 0.490196)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r66lb"]
+bg_color = Color(1, 1, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="LevelUpButtonScene" type="Panel"]
+anchors_preset = -1
+offset_right = 560.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_nk717")
+script = ExtResource("2_q65a6")
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 11.0
+offset_right = 96.0
+offset_bottom = -9.0
+grow_vertical = 2
+
+[node name="LevelUpSprite" type="Sprite2D" parent="Container"]
+
+[node name="LevelUpName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -455.0
+offset_top = 18.5
+offset_right = -79.0
+offset_bottom = 30.5
+grow_horizontal = 0
+text = "Level up Name"
+label_settings = ExtResource("2_32wwk")
+vertical_alignment = 1
+
+[node name="LevelUpDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 41.0
+offset_right = 536.0
+offset_bottom = 93.0
+
+[node name="LevelUpButton" type="Button" parent="."]
+layout_mode = 1
+offset_right = 560.0
+offset_bottom = 100.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_r66lb")
+flat = true
+
+[connection signal="mouse_entered" from="LevelUpButton" to="." method="_on_level_up_button_mouse_entered"]
+[connection signal="mouse_exited" from="LevelUpButton" to="." method="_on_level_up_button_mouse_exited"]
+[connection signal="pressed" from="LevelUpButton" to="." method="_on_level_up_button_pressed"]

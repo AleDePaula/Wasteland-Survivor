@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d37ma6loq4euk"]
+
+[ext_resource type="Script" path="res://scripts/player_bone_pike.gd" id="1_4clxg"]
+[ext_resource type="Texture2D" uid="uid://ca3hm5pd0wadc" path="res://assets/mutation_sprites/Pixelart Bone.png" id="2_emjah"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7i3l"]
+size = Vector2(7.5, 3)
+
+[node name="BoneSpikeProjectile" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 128
+collision_mask = 274
+script = ExtResource("1_4clxg")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 0)
+shape = SubResource("RectangleShape2D_a7i3l")
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_emjah")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

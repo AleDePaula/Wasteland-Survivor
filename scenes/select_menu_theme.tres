@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://28vys3gvh4r"]
+
+[ext_resource type="FontFile" uid="uid://deaw8q1850h51" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_golau"]
+[ext_resource type="Texture2D" uid="uid://cq28xtfytx4lj" path="res://assets/UI_Assets/panel_glass.png" id="2_ehhfk"]
+[ext_resource type="Texture2D" uid="uid://dr3whn3gi6yjs" path="res://assets/UI_Assets/Zombie-Tileset---_0499_Capa-502.png" id="3_xkphx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ep1ke"]
+texture = ExtResource("2_ehhfk")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 64, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5yj7"]
+texture = ExtResource("3_xkphx")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[resource]
+ItemList/colors/font_color = Color(0.435192, 0.435192, 0.435192, 1)
+ItemList/colors/font_outline_color = Color(0, 0, 0, 1)
+ItemList/constants/icon_margin = 32
+ItemList/constants/outline_size = 10
+ItemList/fonts/font = ExtResource("1_golau")
+ItemList/styles/panel = SubResource("StyleBoxTexture_ep1ke")
+ItemList/styles/selected = SubResource("StyleBoxTexture_a5yj7")

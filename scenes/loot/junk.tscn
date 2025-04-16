@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://fvpuy1vk613f"]
+
+[ext_resource type="Script" path="res://scripts/junk.gd" id="1_ly8yk"]
+[ext_resource type="Texture2D" uid="uid://boida7012fsh4" path="res://assets/junk/Zombie-Tileset---_0355_Capa-356.png" id="2_0cid1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g00bn"]
+size = Vector2(10, 10)
+
+[node name="Junk" type="Area2D"]
+collision_layer = 4096
+script = ExtResource("1_ly8yk")
+junk_value = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_g00bn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0cid1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b18nudn3j7opu"]
+
+[ext_resource type="Script" path="res://scripts/putrid_pustule.gd" id="1_r0dkv"]
+[ext_resource type="PackedScene" uid="uid://c00qucj6nydio" path="res://scenes/mutation_scenes/putrid_pustule/putrid_pustule_spawn.tscn" id="2_c78is"]
+
+[node name="PutridPustule" type="Node2D"]
+script = ExtResource("1_r0dkv")
+putrid_pustule_prefab = ExtResource("2_c78is")
+base_area = 10.0
+base_damage = 1.0
+base_damage_interval = 1.0
+base_speed = 5.0
+base_timer = 5.0
+spawn_time = 5.0
+
+[node name="PustuleSpawnTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="PustuleSpawnTimer" to="." method="_on_pustule_spawn_timer_timeout"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=3 uid="uid://dk401nx8uuot8"]
 
-[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_wonck"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_wonck"]
 [ext_resource type="Texture2D" uid="uid://dfbqc3pkaemao" path="res://assets/UI_Assets/blank_button.png" id="2_3wlg6"]
+[ext_resource type="Theme" uid="uid://bfrlp1sdiryxp" path="res://scenes/button_theme.tres" id="2_4o3qg"]
 [ext_resource type="AudioStream" uid="uid://c86sl00wop8c" path="res://assets/sounds/ui-pop-up.wav" id="2_p5dqc"]
-[ext_resource type="LabelSettings" uid="uid://dysojc0nxp2g5" path="res://assets/fonts/button_text.tres" id="3_anpq3"]
 [ext_resource type="FontFile" uid="uid://deaw8q1850h51" path="res://assets/fonts/PressStart2P-Regular.ttf" id="4_gds7j"]
 [ext_resource type="Texture2D" uid="uid://2y1lrm6fc4yn" path="res://assets/UI_Assets/wasd_img.png" id="5_fqc23"]
 [ext_resource type="Texture2D" uid="uid://cp7fjn8psswf0" path="res://assets/UI_Assets/mouse.png" id="6_vp3xq"]
@@ -144,62 +144,36 @@ offset_top = -40.0
 offset_right = 60.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_4o3qg")
 theme_override_colors/icon_focus_color = Color(0.721569, 0, 0, 1)
+text = "Play"
 icon = ExtResource("2_3wlg6")
 flat = true
 icon_alignment = 1
 
-[node name="PlayButtonLabel" type="Label" parent="ButtonPanel/PlayButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -5.5
-offset_right = 22.0
-offset_bottom = 5.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Play"
-label_settings = ExtResource("3_anpq3")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ExitButton" type="Button" parent="ButtonPanel"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -60.0
+offset_top = 14.0
 offset_right = 60.0
-offset_bottom = 40.0
+offset_bottom = 54.0
 grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_4o3qg")
+theme_override_colors/icon_focus_color = Color(0.721569, 0, 0, 1)
+text = "Exit"
 icon = ExtResource("2_3wlg6")
 flat = true
-
-[node name="ExitButtonLabel" type="Label" parent="ButtonPanel/ExitButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -5.5
-offset_right = 22.0
-offset_bottom = 5.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Exit
-"
-label_settings = ExtResource("3_anpq3")
-horizontal_alignment = 1
-vertical_alignment = 1
+icon_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_p5dqc")
+volume_db = -10.0
 
 [node name="LogoContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -333,8 +307,6 @@ texture = ExtResource("12_g1sg3")
 [connection signal="mouse_entered" from="ButtonPanel/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonPanel/PlayButton" to="." method="_on_play_button_mouse_exited"]
 [connection signal="pressed" from="ButtonPanel/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="focus_entered" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_focus_entered"]
-[connection signal="focus_exited" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_focus_exited"]
 [connection signal="mouse_entered" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_mouse_exited"]
 [connection signal="pressed" from="ButtonPanel/ExitButton" to="." method="_on_exit_button_pressed"]

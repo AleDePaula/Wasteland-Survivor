@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0qjc2wghi31l"]
+
+[ext_resource type="Script" path="res://scenes/mutation_scenes/banshee_scream/banshee_scream.gd" id="1_ej24s"]
+[ext_resource type="Texture2D" uid="uid://pnlo1oeafd3f" path="res://assets/player/Zombie-Tileset---_0479_Capa-480.png" id="2_rk4am"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sngyc"]
+radius = 71.007
+
+[node name="BansheeScream" type="Node2D"]
+script = ExtResource("1_ej24s")
+
+[node name="Zombie-tileset---0479Capa-480" type="Sprite2D" parent="."]
+texture = ExtResource("2_rk4am")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sngyc")
+
+[node name="DamageTimer" type="Timer" parent="."]

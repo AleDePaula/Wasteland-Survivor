@@ -3,8 +3,6 @@ extends CanvasLayer
 @onready var button_sound = $ButtonSound
 
 var GM = GameManager
-
-
 	
 func _input(event):	
 	#Enable/Disable Mouse
@@ -21,8 +19,8 @@ func _on_main_menu_button_mouse_exited():
 	main_menu_button.self_modulate = Color(1, 1, 1)
 	
 func _on_main_menu_button_pressed():
-	pass # Replace with function body.
 	GM.is_game_over=true
+	GM.pause_unpause()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_main_menu_button_focus_entered():

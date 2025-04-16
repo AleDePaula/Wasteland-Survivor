@@ -1,13 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj7anaiht7ip1"]
+[gd_scene format=3 uid="uid://bj7anaiht7ip1"]
 
-[ext_resource type="PackedScene" uid="uid://cjr2g186m6mv4" path="res://scenes/mob_spawner.tscn" id="2_xrgat"]
-
-[node name="Test_Scene" type="Node2D"]
+[node name="InfiniteApocalipse" type="Node2D"]
 
 [node name="PlayerStart" type="Marker2D" parent="."]
-position = Vector2(600, 300)
+position = Vector2(575, 312)
 
-[node name="MobSpawner" parent="." instance=ExtResource("2_xrgat")]
-position = Vector2(164, 95)
-scale = Vector2(0.7, 0.7)
-spawner_power = 1000
+[node name="MaxCameraTop" type="Marker2D" parent="."]
+position = Vector2(533, -16)
+
+[node name="MaxCameraBottom" type="Marker2D" parent="."]
+position = Vector2(608, 656)
+
+[node name="MaxCameraLeft" type="Marker2D" parent="."]
+position = Vector2(-16, 352)
+
+[node name="MaxCameraRight" type="Marker2D" parent="."]
+position = Vector2(1166, 393)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg188caeapmx1"]
+
+[ext_resource type="Script" path="res://scripts/mutant_claws.gd" id="1_aun3m"]
+[ext_resource type="Texture2D" uid="uid://nb0cfxsxf0qo" path="res://assets/player/Zombie-Tileset---_0476_Capa-477.png" id="2_5x64k"]
+
+[node name="MutantClaws" type="Node2D"]
+script = ExtResource("1_aun3m")
+spawn_time = 1.0
+
+[node name="Claw_Spawn" type="Marker2D" parent="."]
+position = Vector2(4, 0)
+
+[node name="Zombie-tileset---0476Capa-477" type="Sprite2D" parent="."]
+texture = ExtResource("2_5x64k")
+
+[node name="Claw_Spawn_Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Claw_Spawn_Timer" to="." method="_on_claw_spawn_timer_timeout"]

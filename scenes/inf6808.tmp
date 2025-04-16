@@ -1,0 +1,177 @@
+[gd_scene load_steps=8 format=3 uid="uid://cva3jpaw6bsy0"]
+
+[ext_resource type="Script" path="res://scripts/infinite_apocalypse_menu.gd" id="1_l7ufd"]
+[ext_resource type="Texture2D" uid="uid://dfbqc3pkaemao" path="res://assets/UI_Assets/blank_button.png" id="2_hpm7s"]
+[ext_resource type="LabelSettings" uid="uid://dysojc0nxp2g5" path="res://assets/fonts/button_text.tres" id="3_0nb1h"]
+[ext_resource type="AudioStream" uid="uid://c86sl00wop8c" path="res://assets/sounds/ui-pop-up.wav" id="4_kkv0n"]
+[ext_resource type="FontFile" uid="uid://deaw8q1850h51" path="res://assets/fonts/PressStart2P-Regular.ttf" id="5_numcc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ib5u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ar0fq"]
+font = ExtResource("5_numcc")
+font_size = 42
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+
+[node name="InfiniteApocalypseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 2
+script = ExtResource("1_l7ufd")
+
+[node name="PlayButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 420.0
+offset_top = -148.0
+offset_right = 540.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/icon_focus_color = Color(0.721569, 0, 0, 1)
+icon = ExtResource("2_hpm7s")
+flat = true
+icon_alignment = 1
+
+[node name="PlayButtonLabel" type="Label" parent="PlayButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -5.5
+offset_right = 22.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+label_settings = ExtResource("3_0nb1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 420.0
+offset_top = 540.0
+offset_right = 540.0
+offset_bottom = 580.0
+grow_horizontal = 2
+icon = ExtResource("2_hpm7s")
+flat = true
+
+[node name="ExitButtonLabel" type="Label" parent="ExitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -5.5
+offset_right = 22.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back
+"
+label_settings = ExtResource("3_0nb1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kkv0n")
+
+[node name="LogoContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 95.0
+offset_right = 976.0
+offset_bottom = 137.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_1ib5u")
+
+[node name="GameName" type="Label" parent="LogoContainer"]
+layout_mode = 2
+text = "Wasteland Survivor"
+label_settings = SubResource("LabelSettings_ar0fq")
+
+[node name="PlayerList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 280.0
+offset_right = 424.0
+offset_bottom = 584.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/icon_margin = 16
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_numcc")
+theme_override_font_sizes/font_size = 24
+allow_search = false
+auto_height = true
+text_overrun_behavior = 1
+same_column_width = true
+fixed_icon_size = Vector2i(40, 40)
+
+[node name="WeaponList" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -368.0
+offset_right = 120.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/icon_margin = 16
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_numcc")
+theme_override_font_sizes/font_size = 24
+allow_search = false
+auto_height = true
+same_column_width = true
+fixed_icon_size = Vector2i(40, 40)
+
+[node name="CompanionList" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 152.0
+offset_top = -368.0
+offset_right = 392.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="focus_entered" from="PlayButton" to="." method="_on_play_button_focus_entered"]
+[connection signal="focus_exited" from="PlayButton" to="." method="_on_play_button_focus_exited"]
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="focus_entered" from="ExitButton" to="." method="_on_exit_button_focus_entered"]
+[connection signal="focus_exited" from="ExitButton" to="." method="_on_exit_button_focus_exited"]
+[connection signal="mouse_entered" from="ExitButton" to="." method="_on_exit_button_mouse_entered"]
+[connection signal="mouse_exited" from="ExitButton" to="." method="_on_exit_button_mouse_exited"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

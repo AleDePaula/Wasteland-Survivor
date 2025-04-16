@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c00qucj6nydio"]
+
+[ext_resource type="Script" path="res://scripts/putrid_pustule.gd" id="1_r0dkv"]
+[ext_resource type="Texture2D" uid="uid://u13hrwbj2x7c" path="res://assets/mutation_sprites/smokes.png" id="2_w0yp0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ginvl"]
+radius = 19.0263
+
+[node name="PutridPustule" type="Area2D"]
+script = ExtResource("1_r0dkv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ginvl")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_w0yp0")
+hframes = 12
+vframes = 23
+frame = 4

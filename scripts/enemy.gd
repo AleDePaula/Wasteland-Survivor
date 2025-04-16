@@ -2,12 +2,17 @@ class_name Enemy
 extends CharacterBody2D
 
 var GM = GameManager
+var PM = PlayerManager
+var EM = EnemyManager
+var SM = StageManager
+
 @onready var attack_hit_box = $AttackHitBox
 @onready var enemy_hit_box = $EnemyHitBox
 @onready var enemy_sprite = $AnimatedSprite2D
+@onready var hp_bar = $HpBar
 
 @export_category("SCENES")
-@export var spawn_animation: PackedScene
+
 @export var death_prefab: PackedScene
 @export var damage_card: PackedScene
 
@@ -18,46 +23,58 @@ var GM = GameManager
 @export var enemy_speed: float
 @export var enemy_cooldown: float
 @export var spawner_power_cost: int
+@export var loot_amount: int
 
 ##### SIGNALS #######
 signal drop_loot
+signal drop_radiation
 
+#MISC VARIABLES
 var is_turret: bool
 var looking_side: String
 var enemy_speed_multiplier: float
 var speed : float
 
+var player = PM.player
+
 var attack_cooldown: float
+
 func _ready():
 	is_turret = false
 	enemy_speed_multiplier = 1
 	speed = enemy_speed*enemy_speed_multiplier
 	attack_cooldown = 0
+	hp_bar.max_value= enemy_health
+	hp_bar.value=enemy_health
 	if is_in_group("turrets"):
 		is_turret=true
 	set_process(false)
-	set_physics_process(false)	
+	set_physics_process(false)
 
 func _process(delta):
 	process_attack_cooldown(delta)
 	deal_damage_to_player()
-	if enemy_health<=0:
-		enemy_die()	
-	if GM.player_died:
-		speed = 0
+	check_player_dodge()
+	
+	if enemy_health<=0:enemy_die()
 
 func _physics_process(delta):
 	follow_player()
-	turn_sprite()	
+	turn_sprite()
 
 func follow_player():
 	if is_turret: return
 	else:
-		var player_position = GM.player_position
-		var distance = player_position - position
-		var input_vector = distance.normalized()
-		velocity = input_vector.normalized() * speed * 10
-		move_and_slide()
+		if !GM.player_died:
+			
+			var player_position = GM.player_position
+			var distance = player_position - position
+			var input_vector = distance.normalized()
+			velocity = input_vector.normalized() * speed
+			
+			if velocity> Vector2(0,0) or velocity < Vector2(0,0):
+				move_and_slide()
+				
 
 func turn_sprite():
 	var player_position = GM.player_position
@@ -91,7 +108,7 @@ func deal_damage_to_player():
 				attack_cooldown = enemy_cooldown
 	else:
 		var turret_range = attack_hit_box.get_overlapping_bodies()
-		const vomit_prefab = preload("res://scenes/vomit.tscn")
+		const vomit_prefab = preload("res://scenes/enemy_scenes/turret/vomit.tscn")
 		for player_body in turret_range:
 			if player_body is Player:
 				if attack_cooldown<=0:
@@ -104,31 +121,23 @@ func deal_damage_to_player():
 					vomit_instance.direction = direction
 					get_tree().current_scene.add_child(vomit_instance)
 
-func _on_enemy_hit_box_area_entered(area):	
-	if area is Bullet:
-		var bullet : Bullet = area
-		enemy_recieve_damage(bullet.bullet_damage)
-		
-		if bullet.bullet_pierce<=0:
-			bullet.set_physics_process(false)
-			bullet.animation.play("collide")
-		else:
-			bullet.bullet_pierce-=1
-			
 func enemy_recieve_damage(bullet_damage):
-	
+
 	var damage_card_instance = damage_card.instantiate()
 	var damage_card_label = damage_card_instance.find_child("DamageText")
 	damage_card_label.text = str(bullet_damage)
 	add_child(damage_card_instance)
-	damage_card_instance.find_child("AnimationPlayer").play("show_damage")
 	enemy_health-=bullet_damage
+	hp_bar.value=enemy_health
+	
+func add_knockback(knockback):
+	pass
 
 func enemy_die():
 	GM.enemies_killed+=1
 	enemy_speed=0
-	GM.player.gain_xp(enemy_xp)
 	emit_signal("drop_loot")
+	emit_signal("drop_radiation")
 	if death_prefab:
 		var death_animation = death_prefab.instantiate()
 		death_animation.scale = scale
@@ -138,3 +147,9 @@ func enemy_die():
 
 func process_attack_cooldown(delta):
 	attack_cooldown-=delta
+
+func check_player_dodge():
+	if EM.player_is_dodging:
+		self.set_collision_mask_value(1, false)
+	else:
+		self.set_collision_mask_value(1, true)

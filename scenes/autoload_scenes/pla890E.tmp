@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cakkugxi5m2tl"]
+
+[ext_resource type="Script" path="res://scripts/player_manager.gd" id="1_d71s0"]
+[ext_resource type="PackedScene" uid="uid://c6l3l2jw5nnf4" path="res://scenes/weapon_scenes/weapons/pistol.tscn" id="2_i77ra"]
+[ext_resource type="PackedScene" uid="uid://camalbrktqpg8" path="res://scenes/player/player.tscn" id="2_igi5s"]
+[ext_resource type="PackedScene" uid="uid://dlo06oc2e3sq8" path="res://scenes/weapon_scenes/bullets/bullet.tscn" id="3_hhk1x"]
+[ext_resource type="PackedScene" uid="uid://bf7dgcxpmc232" path="res://scenes/mutation_scenes/rotten_aura.tscn" id="5_chdp6"]
+
+[node name="PlayerManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_d71s0")
+player_scenes = Array[PackedScene]([ExtResource("2_igi5s")])
+main_weapons = Array[PackedScene]([ExtResource("2_i77ra")])
+bullets = Array[PackedScene]([ExtResource("3_hhk1x")])
+mutations = Array[PackedScene]([ExtResource("5_chdp6")])
+player_max_health_mod = 1.0
+player_heal_mod_mod = 1
+player_speed_mod = 1
+player_dodge_speed_mod = 1
+player_dodge_cooldown_mod = 1
+player_dodge_lenght_mod = 1
+player_damage_mod = 1
+player_max_rad_mod = 1
+player_rad_mod = 1.0
+player_main_damage_modifier = 1.0
+player_main_shoot_cooldown = 1.0
+player_main_bullet_speed = 1
+player_max_mutations = 3
+player_mutation_damage_modifier = 1.0
+player_mutation_area_modifier = 1.0
+player_mutation_projectiles_modifier = 1

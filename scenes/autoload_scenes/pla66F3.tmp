@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cakkugxi5m2tl"]
+
+[ext_resource type="Script" path="res://scripts/player_manager.gd" id="1_d71s0"]
+[ext_resource type="PackedScene" uid="uid://c6l3l2jw5nnf4" path="res://scenes/weapon_scenes/weapons/pistol.tscn" id="2_i77ra"]
+[ext_resource type="PackedScene" uid="uid://camalbrktqpg8" path="res://scenes/player/player.tscn" id="2_igi5s"]
+[ext_resource type="PackedScene" uid="uid://dlo06oc2e3sq8" path="res://scenes/weapon_scenes/bullets/bullet.tscn" id="3_hhk1x"]
+[ext_resource type="PackedScene" uid="uid://c3sbw3mk3mi0y" path="res://scenes/weapon_scenes/weapons/shotgun.tscn" id="4_r2cf3"]
+[ext_resource type="PackedScene" uid="uid://bf7dgcxpmc232" path="res://scenes/mutation_scenes/rotten_aura/rotten_aura.tscn" id="5_chdp6"]
+[ext_resource type="PackedScene" uid="uid://cxy48qxhbwt5a" path="res://scenes/mutation_scenes/toxic_vomit/toxic_vomit.tscn" id="6_teslm"]
+
+[node name="PlayerManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_d71s0")
+player_scenes = Array[PackedScene]([ExtResource("2_igi5s")])
+main_weapons = Array[PackedScene]([ExtResource("2_i77ra"), ExtResource("4_r2cf3")])
+bullets = Array[PackedScene]([ExtResource("3_hhk1x")])
+mutations = Array[PackedScene]([ExtResource("5_chdp6"), ExtResource("6_teslm")])
+xp_pool = 10
+starting_level = 1
+level_cap = 100
+player_max_health_mod = 1.0
+player_heal_mod_mod = 1
+player_speed_mod = 1
+player_dodge_speed_mod = 1
+player_dodge_cooldown_mod = 1
+player_dodge_lenght_mod = 1
+player_damage_mod = 80
+player_max_stat_mutations = 3
+player_max_stat_mutations_per_level = 2
+player_max_skip_mutation = 1
+player_max_reroll_mutation = 1
+player_mutation_level_interval = 2
+player_max_rad_mod = 1
+player_rad_mod = 1.0
+player_main_damage_modifier = 1.0
+player_main_shoot_cooldown = 1.0
+player_main_bullet_speed = 1
+player_max_mutations = 3
+player_max_mutations_per_level = 2
+player_mutation_damage_mod = 1.0
+player_mutation_speed_mod = 1.0
+player_mutation_area_mod = 1.0
+player_mutation_cooldown_mod = 1.0
+player_mutation_pierce_mod = 1.0

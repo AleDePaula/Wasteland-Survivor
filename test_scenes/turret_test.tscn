@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcv3acx0jkbuu"]
 
-[ext_resource type="PackedScene" uid="uid://cxsam4y7b6714" path="res://scenes/game_ui.tscn" id="2_7fyi3"]
-[ext_resource type="PackedScene" uid="uid://b3e3wb3xliyqp" path="res://scenes/enemy_scenes/turret.tscn" id="2_bhg7v"]
+[ext_resource type="PackedScene" uid="uid://cxsam4y7b6714" path="res://scenes/game_ui_scene/game_ui.tscn" id="2_7fyi3"]
+[ext_resource type="PackedScene" uid="uid://b3e3wb3xliyqp" path="res://scenes/enemy_scenes/turret/turret.tscn" id="2_bhg7v"]
 
 [node name="Node2D" type="Node2D"]
 

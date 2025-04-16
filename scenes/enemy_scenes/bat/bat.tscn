@@ -1,0 +1,153 @@
+[gd_scene load_steps=20 format=3 uid="uid://cyeackqrtbfpe"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wrq5a"]
+[ext_resource type="PackedScene" uid="uid://guyqyt8dhvqy" path="res://scenes/enemy_scenes/assets_scenes/enemy_death_animation.tscn" id="2_ap13b"]
+[ext_resource type="PackedScene" uid="uid://bqocrwqyb0xyx" path="res://scenes/cards/damage_card.tscn" id="3_hv3e3"]
+[ext_resource type="Texture2D" uid="uid://cpehic80kn37p" path="res://assets/enemies/Black Bird Flying and Ground Eating Animation Frames/Zombie-Tileset---_0309_Capa-310.png" id="4_r4xdq"]
+[ext_resource type="Texture2D" uid="uid://cya8hy2eja50h" path="res://assets/enemies/Black Bird Flying and Ground Eating Animation Frames/Zombie-Tileset---_0310_Capa-311.png" id="5_ebod3"]
+[ext_resource type="Texture2D" uid="uid://ucb7sqqymbgn" path="res://assets/enemies/Black Bird Flying and Ground Eating Animation Frames/Zombie-Tileset---_0311_Capa-312.png" id="6_det3n"]
+[ext_resource type="PackedScene" uid="uid://dcwd54g36h2qe" path="res://scenes/heal_itens_scenes/medkit.tscn" id="8_37f77"]
+[ext_resource type="PackedScene" uid="uid://fvpuy1vk613f" path="res://scenes/loot/junk.tscn" id="10_1neie"]
+[ext_resource type="Script" path="res://scripts/drop_radiation.gd" id="10_2pp7y"]
+[ext_resource type="Script" path="res://scripts/drop_loot.gd" id="10_4ivd5"]
+[ext_resource type="PackedScene" uid="uid://d00kysbsbfndr" path="res://scenes/player/radiation.tscn" id="11_2ixu8"]
+[ext_resource type="PackedScene" uid="uid://c7huofudv8bbh" path="res://scenes/heal_itens_scenes/radaway.tscn" id="11_eywmt"]
+[ext_resource type="PackedScene" uid="uid://basulhldnnc6y" path="res://scenes/heal_itens_scenes/coke_can.tscn" id="11_g1yf0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p4gnk"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tiibx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_r4xdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ebod3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r4xdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_det3n")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_r4xdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ebod3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r4xdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_det3n")
+}],
+"loop": true,
+"name": &"walk_side",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_r4xdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ebod3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r4xdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_det3n")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hk701"]
+radius = 3.12666
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g6cny"]
+radius = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8oe64"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irie8"]
+bg_color = Color(0.429619, 7.70092e-07, 3.60981e-07, 1)
+
+[node name="Bat" type="CharacterBody2D" groups=["enemies", "mobs"]]
+process_mode = 1
+self_modulate = Color(0.396078, 0, 0, 1)
+z_index = 3
+scale = Vector2(1.2, 1.2)
+collision_layer = 256
+collision_mask = 133
+platform_on_leave = 2
+platform_floor_layers = 4278190080
+script = ExtResource("1_wrq5a")
+death_prefab = ExtResource("2_ap13b")
+damage_card = ExtResource("3_hv3e3")
+enemy_xp = 1
+enemy_health = 2.0
+enemy_damage = 1.0
+enemy_speed = 70.0
+enemy_cooldown = 0.5
+spawner_power_cost = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.78814e-07)
+shape = SubResource("CapsuleShape2D_p4gnk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tiibx")
+animation = &"walk_up"
+autoplay = "walk_down"
+
+[node name="AttackHitBox" type="Area2D" parent="."]
+scale = Vector2(1.27932, 1.27932)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
+shape = SubResource("CircleShape2D_hk701")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="EnemyHitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
+position = Vector2(0, -4.47035e-07)
+shape = SubResource("CircleShape2D_g6cny")
+debug_color = Color(0, 1, 0, 0)
+
+[node name="HpBar" type="ProgressBar" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = -2.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_8oe64")
+theme_override_styles/fill = SubResource("StyleBoxFlat_irie8")
+show_percentage = false
+
+[node name="Loot" type="Node" parent="."]
+script = ExtResource("10_4ivd5")
+loot_table = Array[PackedScene]([ExtResource("11_eywmt"), ExtResource("8_37f77"), ExtResource("11_g1yf0"), ExtResource("10_1neie")])
+loot_chances = Array[float]([1.0, 3.0, 5.0, 20.0])
+
+[node name="Radiation" type="Node" parent="."]
+script = ExtResource("10_2pp7y")
+radiation_prefab = ExtResource("11_2ixu8")
+
+[connection signal="drop_loot" from="." to="Loot" method="_on_enemy_drop_loot"]
+[connection signal="drop_radiation" from="." to="Radiation" method="_on_enemy_drop_radiation"]
+[connection signal="area_entered" from="EnemyHitBox" to="." method="_on_enemy_hit_box_area_entered"]

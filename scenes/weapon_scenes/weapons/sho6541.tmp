@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3sbw3mk3mi0y"]
+
+[ext_resource type="Script" path="res://scripts/shotgun.gd" id="1_n1tny"]
+[ext_resource type="Texture2D" uid="uid://cd75qemhpcltb" path="res://assets/shotgun/Zombie-Tileset---_0331_Capa-332.png" id="3_j7k0i"]
+[ext_resource type="Texture2D" uid="uid://c8y5glkjyi3ac" path="res://assets/shotgun/Zombie-Tileset---_0364_Capa-365.png" id="5_du8w5"]
+[ext_resource type="Texture2D" uid="uid://dm53xg05ihusd" path="res://assets/shotgun/Zombie-Tileset---_0365_Capa-366.png" id="6_c40qo"]
+[ext_resource type="Texture2D" uid="uid://dh7wnsax7yqyj" path="res://assets/shotgun/Zombie-Tileset---_0366_Capa-367.png" id="7_vuhr2"]
+
+[sub_resource type="Curve2D" id="Curve2D_hivvy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -7, 0, 0, 0, 0, 0, -7, -3, 0, 0, 0, 0, -5, -6, 0, 0, 0, 0, -3, -8, 0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 3, -8, 0, 0, 0, 0, 5, -6, 0, 0, 0, 0, 7, -3, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 7, 3, 0, 0, 0, 0, 5, 6, 0, 0, 0, 0, 3, 8, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, -3, 8, 0, 0, 0, 0, -5, 6, 0, 0, 0, 0, -7, 3, 0, 0, 0, 0, -7, 0)
+}
+point_count = 17
+
+[sub_resource type="Animation" id="Animation_fdh5l"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShootSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_gq1uk"]
+resource_name = "shoot"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShootSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_du8w5"), ExtResource("6_c40qo"), ExtResource("7_vuhr2"), null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vrp1i"]
+_data = {
+"idle": SubResource("Animation_fdh5l"),
+"shoot": SubResource("Animation_gq1uk")
+}
+
+[node name="Shotgun" type="Node2D"]
+script = ExtResource("1_n1tny")
+bullet_speed = 150.0
+bullet_spread_count = 5
+weapon_shoot_cooldown = 10.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="MuzzlePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hivvy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="MuzzlePath"]
+position = Vector2(3.43323e-05, 8)
+rotation = 3.14158
+progress = 37.3019
+cubic_interp = false
+loop = false
+
+[node name="GunSprite" type="Sprite2D" parent="MuzzlePath/PathFollow2D"]
+texture = ExtResource("3_j7k0i")
+offset = Vector2(0, 1.5)
+flip_v = true
+
+[node name="Muzzle" type="Marker2D" parent="MuzzlePath/PathFollow2D/GunSprite"]
+gizmo_extents = 0.0
+
+[node name="ShootSprite" type="Sprite2D" parent="MuzzlePath/PathFollow2D/GunSprite/Muzzle"]
+position = Vector2(11, 3.0001)
+texture = ExtResource("5_du8w5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MuzzlePath/PathFollow2D/GunSprite/Muzzle"]
+libraries = {
+"": SubResource("AnimationLibrary_vrp1i")
+}
+autoplay = "idle"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

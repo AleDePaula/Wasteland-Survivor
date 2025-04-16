@@ -1,0 +1,263 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgx35oj7q4rk3"]
+
+[ext_resource type="Script" path="res://scripts/level_up_menu.gd" id="1_4o3y3"]
+[ext_resource type="Texture2D" uid="uid://cq28xtfytx4lj" path="res://assets/UI_Assets/panel_glass.png" id="2_e3yij"]
+[ext_resource type="LabelSettings" uid="uid://cnfdbdkvdq1x0" path="res://assets/fonts/game_over_Label.tres" id="3_lxhbo"]
+[ext_resource type="Texture2D" uid="uid://dfbqc3pkaemao" path="res://assets/UI_Assets/blank_button.png" id="4_xu1nd"]
+[ext_resource type="LabelSettings" uid="uid://dysojc0nxp2g5" path="res://assets/fonts/button_text.tres" id="5_7no8q"]
+[ext_resource type="AudioStream" uid="uid://bxe4t2munf2hl" path="res://assets/sounds/level_u_sound.wav" id="6_u6fse"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kmkf7"]
+texture = ExtResource("2_e3yij")
+
+[sub_resource type="Animation" id="Animation_c8vyg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackGround:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_roige"]
+resource_name = "load_menu_anim"
+length = 2.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackGround:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.65098)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b6rcj"]
+_data = {
+"RESET": SubResource("Animation_c8vyg"),
+"load_menu_anim": SubResource("Animation_roige")
+}
+
+[node name="LevelUpMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_4o3y3")
+
+[node name="BackGround" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MenuPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -292.0
+offset_top = -292.0
+offset_right = 292.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kmkf7")
+
+[node name="LevelUpButtonPosition1" type="Marker2D" parent="MenuPanel"]
+position = Vector2(12, 72)
+
+[node name="LevelUpButtonPosition2" type="Marker2D" parent="MenuPanel"]
+position = Vector2(12, 184)
+
+[node name="LevelUpButtonPosition3" type="Marker2D" parent="MenuPanel"]
+position = Vector2(12, 296)
+
+[node name="LevelUpButtonPosition4" type="Marker2D" parent="MenuPanel"]
+position = Vector2(12, 408)
+
+[node name="LevelUpTitle" type="Label" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_top = 34.0
+offset_right = 108.0
+offset_bottom = 58.0
+grow_horizontal = 2
+text = "Choose a Mutation!!"
+label_settings = ExtResource("3_lxhbo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NeedResearch1" type="Label" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 98.0
+offset_right = 192.0
+offset_bottom = 149.0
+grow_horizontal = 2
+text = "Need to research 
+further!!"
+label_settings = ExtResource("3_lxhbo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NeedResearch2" type="Label" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 210.0
+offset_right = 192.0
+offset_bottom = 261.0
+grow_horizontal = 2
+text = "Need to research 
+further!!"
+label_settings = ExtResource("3_lxhbo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NeedResearch3" type="Label" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 322.0
+offset_right = 192.0
+offset_bottom = 373.0
+grow_horizontal = 2
+text = "Need to research 
+further!!"
+label_settings = ExtResource("3_lxhbo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NeedResearch4" type="Label" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 434.0
+offset_right = 192.0
+offset_bottom = 485.0
+grow_horizontal = 2
+text = "Need to research 
+further!!"
+label_settings = ExtResource("3_lxhbo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkipButton" type="Button" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -76.0
+offset_right = -44.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("4_xu1nd")
+flat = true
+
+[node name="SkipButtonText" type="Label" parent="MenuPanel/SkipButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -6.0
+offset_right = 49.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Skip"
+label_settings = ExtResource("5_7no8q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RerollButton" type="Button" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -76.0
+offset_right = 156.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("4_xu1nd")
+flat = true
+
+[node name="SkipButtonText" type="Label" parent="MenuPanel/RerollButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -6.0
+offset_right = 49.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reroll"
+label_settings = ExtResource("5_7no8q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b6rcj")
+}
+autoplay = "load_menu_anim"
+
+[node name="LevelUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_u6fse")
+autoplay = true
+
+[connection signal="mouse_entered" from="MenuPanel/SkipButton" to="." method="_on_skip_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuPanel/SkipButton" to="." method="_on_skip_button_mouse_exited"]
+[connection signal="pressed" from="MenuPanel/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="mouse_entered" from="MenuPanel/RerollButton" to="." method="_on_reroll_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuPanel/RerollButton" to="." method="_on_reroll_button_mouse_exited"]
+[connection signal="pressed" from="MenuPanel/RerollButton" to="." method="_on_reroll_button_pressed"]

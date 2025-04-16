@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cakkugxi5m2tl"]
+
+[ext_resource type="Script" path="res://scripts/player_manager.gd" id="1_d71s0"]
+[ext_resource type="PackedScene" uid="uid://c6l3l2jw5nnf4" path="res://scenes/weapon_scenes/weapons/pistol.tscn" id="2_i77ra"]
+[ext_resource type="PackedScene" uid="uid://dlo06oc2e3sq8" path="res://scenes/weapon_scenes/bullets/bullet.tscn" id="3_hhk1x"]
+
+[node name="PlayerManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_d71s0")
+player_scenes = null
+main_weapons = Array[PackedScene]([ExtResource("2_i77ra")])
+companions = null
+bullets = Array[PackedScene]([ExtResource("3_hhk1x")])
+player_main_damage_modifier = 1.0
+player_main_shoot_cooldown = 1.0
+player_main_pierce = 1
+player_companion_damage_modifier = null
+player_companion_cooldown_modifier = null
+player_companion_area_modifier = null
+player_max_mutations = 3
+player_mutation_damage_modifier = 1.0
+player_mutation_area_modifier = 1.0
+player_mutation_cooldown_modifier = 1.0
+player_mutation_projectiles_modifier = 1

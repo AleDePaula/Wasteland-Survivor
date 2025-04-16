@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://tcwqdpccwb5s"]
+
+[ext_resource type="Script" path="res://scripts/bone_spike.gd" id="1_oiw7j"]
+[ext_resource type="Texture2D" uid="uid://nb0cfxsxf0qo" path="res://assets/player/Zombie-Tileset---_0476_Capa-477.png" id="2_jwod2"]
+[ext_resource type="PackedScene" uid="uid://d37ma6loq4euk" path="res://scenes/mutation_scenes/bone_spikes/bone_spike_projectile.tscn" id="2_n3ot8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpbx3"]
+radius = 70.0
+
+[node name="BoneSpike" type="Node2D"]
+z_index = 2
+script = ExtResource("1_oiw7j")
+spike_prefab = ExtResource("2_n3ot8")
+base_damage = 1.0
+base_damage_interval = 0.5
+base_speed = 200.0
+base_projectile = 1
+
+[node name="Zombie-tileset---0476Capa-477" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+texture = ExtResource("2_jwod2")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="RangeBox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 258
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeBox"]
+shape = SubResource("CircleShape2D_fpbx3")
+debug_color = Color(1, 0, 0, 0)
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_damage_timer_timeout"]

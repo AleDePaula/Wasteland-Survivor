@@ -1,0 +1,26 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjr2g186m6mv4"]
+
+[ext_resource type="Script" path="res://scripts/mob_spawner.gd" id="1_46wd2"]
+[ext_resource type="PackedScene" uid="uid://b3do61bhjvax5" path="res://scenes/enemy_scenes/assets_scenes/spawn_animation.tscn" id="2_6d7vk"]
+[ext_resource type="PackedScene" uid="uid://cyeackqrtbfpe" path="res://scenes/enemy_scenes/bat/bat.tscn" id="2_r70ho"]
+[ext_resource type="PackedScene" uid="uid://d4i4i1svhd7is" path="res://scenes/enemy_scenes/big_boss/big.tscn" id="3_il55k"]
+[ext_resource type="PackedScene" uid="uid://y85cl2a06xx5" path="res://scenes/enemy_scenes/mob/mob.tscn" id="4_pouuk"]
+[ext_resource type="PackedScene" uid="uid://ct2vc1sg6t80i" path="res://scenes/enemy_scenes/skinny/skinny.tscn" id="5_jrc0a"]
+[ext_resource type="PackedScene" uid="uid://b3e3wb3xliyqp" path="res://scenes/enemy_scenes/turret/turret.tscn" id="6_jeaeh"]
+
+[node name="MobSpawner" type="Node2D"]
+position = Vector2(319, 210)
+scale = Vector2(0.614059, 0.709621)
+script = ExtResource("1_46wd2")
+spawn_animation = ExtResource("2_6d7vk")
+creatures = Array[PackedScene]([ExtResource("2_r70ho"), ExtResource("3_il55k"), ExtResource("4_pouuk"), ExtResource("5_jrc0a"), ExtResource("6_jeaeh")])
+mobs_per_second = 1.0
+spawner_power = 10
+max_mobs = 10
+max_bosses = 1
+max_turrets = 1
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

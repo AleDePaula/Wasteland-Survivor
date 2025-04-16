@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://c00qucj6nydio"]
+
+[ext_resource type="Script" path="res://scripts/putrid_pustule_spawn.gd" id="1_s1i2i"]
+[ext_resource type="Texture2D" uid="uid://u13hrwbj2x7c" path="res://assets/mutation_sprites/smokes.png" id="2_vfo4w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ginvl"]
+radius = 19.0263
+
+[node name="PutridPustuleSpawn" type="Area2D"]
+collision_layer = 128
+collision_mask = 258
+script = ExtResource("1_s1i2i")
+base_area = 5.0
+base_damage = 10.0
+base_damage_interval = 0.5
+base_timer = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ginvl")
+
+[node name="PustuleSprite" type="Sprite2D" parent="."]
+modulate = Color(0.67451, 1, 0.505882, 0.466667)
+position = Vector2(0, -1)
+texture = ExtResource("2_vfo4w")
+hframes = 12
+vframes = 23
+frame = 185
+
+[node name="PustuleSizeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="PustuleDamageTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PustuleSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="PustuleSizeTimer" to="." method="_on_pustule_size_timer_timeout"]
+[connection signal="timeout" from="PustuleDamageTimer" to="." method="_on_pustule_damage_timer_timeout"]
+[connection signal="timeout" from="PustuleSpawnTimer" to="." method="_on_pustule_spawn_timer_timeout"]

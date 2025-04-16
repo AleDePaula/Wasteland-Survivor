@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxy48qxhbwt5a"]
+
+[ext_resource type="Script" path="res://scripts/toxic_vomit.gd" id="1_fq57q"]
+[ext_resource type="PackedScene" uid="uid://cu15webi1g7kj" path="res://scenes/mutation_scenes/toxic_vomit/player_vomit.tscn" id="2_mos4j"]
+[ext_resource type="Texture2D" uid="uid://nb0cfxsxf0qo" path="res://assets/player/Zombie-Tileset---_0476_Capa-477.png" id="3_1kyub"]
+
+[sub_resource type="Curve2D" id="Curve2D_g7mfo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 2, -6, 0, 0, 0, 0, 3, -5, 0, 0, 0, 0, 4, -4, 0, 0, 0, 0, 5, -3, 0, 0, 0, 0, 6, -2, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 6, 2, 0, 0, 0, 0, 5, 3, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 2, 6, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, -2, 6, 0, 0, 0, 0, -3, 5, 0, 0, 0, 0, -4, 4, 0, 0, 0, 0, -5, 3, 0, 0, 0, 0, -6, 2, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, -6, -2, 0, 0, 0, 0, -5, -3, 0, 0, 0, 0, -4, -4, 0, 0, 0, 0, -3, -5, 0, 0, 0, 0, -2, -6, 0, 0, 0, 0, 0, -6)
+}
+point_count = 25
+
+[node name="ToxicVomit" type="Node2D"]
+z_index = 2
+script = ExtResource("1_fq57q")
+vomit_prefab = ExtResource("2_mos4j")
+base_area = 1.0
+base_damage = 1.0
+base_damage_interval = 2.0
+base_speed = 100.0
+base_projectile = 1
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="Zombie-tileset---0476Capa-477" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_1kyub")
+
+[node name="ProjectilePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_g7mfo")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ProjectilePath"]
+position = Vector2(0, -6)
+
+[node name="VomitSpawnPoint" type="Marker2D" parent="ProjectilePath/PathFollow2D"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_damage_timer_timeout"]
