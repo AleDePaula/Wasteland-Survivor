@@ -41,6 +41,6 @@ Possui experiência com Godot, Unity, lógica de programação e desenvolvimento
 
 ## Contato
 
-GitHub: https://github.com/seu-usuario  
-LinkedIn: https://linkedin.com/in/seu-linkedin  
+GitHub: https://github.com/AleDePaula
+LinkedIn: https://www.linkedin.com/in/alexandre-augusto-de-paula-pinto-74b251205/
 Instagram: @fonogamer
