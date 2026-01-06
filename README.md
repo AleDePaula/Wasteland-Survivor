@@ -1,46 +1,46 @@
 # Wasteland Survivors
 
-Wasteland Survivors é um top-down survivors shooter ambientado em um cenário pós-apocalíptico. O jogo foca em sobrevivência estratégica, leitura de sistemas e tomada de decisão sob pressão, indo além da simples progressão automática comum ao gênero.
+Wasteland Survivors is a top-down survivors shooter set in a post-apocalyptic environment. The game focuses on strategic survival, system awareness, and decision-making under pressure rather than fast reflexes alone.
 
-O projeto está sendo desenvolvido como parte de um processo prático de consolidação em Game Development, com ênfase em arquitetura de sistemas, gameplay emergente e código escalável.
+This project is being developed as a hands-on study in Game Development, with emphasis on gameplay systems, clean architecture, and scalability.
 
-## Sobre o Jogo
+## About the Game
 
-O jogador enfrenta ondas progressivas de inimigos enquanto lida com escassez de recursos, escolhas de upgrade e ambientes hostis que alteram a dinâmica do combate. A sobrevivência depende mais de posicionamento, planejamento e adaptação do que de reflexos rápidos.
+Players face increasingly difficult enemy waves while managing limited resources and making meaningful upgrade choices. Survival depends on positioning, planning, and adaptation as the environment and challenges evolve.
 
-## Principais Mecânicas
+## Core Features
 
-- Combate top-down
-- Sistema de ondas com dificuldade progressiva
-- Upgrades baseados em escolha estratégica
-- Estrutura modular para fácil expansão de sistemas
-- Foco em leitura de jogo e gerenciamento de risco
+- Top-down combat
+- Progressive wave system
+- Choice-driven upgrades
+- Modular and extensible architecture
+- Emphasis on risk management and game sense
 
-## Tecnologias
+## Tech Stack
 
 - Godot 4.x
 - GDScript
-- Git e GitHub
+- Git and GitHub
 
 ## Status
 
-Em desenvolvimento ativo.
+In active development.
 
-## Sobre o Desenvolvedor
+## About the Developer
 
-Alexandre Augusto de Paula Pinto é Speech-Language Pathologist, Vocal Coach e Music Director em transição para a área de Game Development. Atua com foco em design de sistemas, experiência do jogador e narrativa, aplicando conceitos de comunicação, percepção e feedback sensorial ao desenvolvimento de jogos.
+Alexandre Augusto de Paula Pinto is a Speech-Language Pathologist, Vocal Coach, and Music Director transitioning into Game Development. His background in communication, perception, and feedback-driven learning informs his approach to system design and player experience.
 
-Possui experiência com Godot, Unity, lógica de programação e desenvolvimento de protótipos jogáveis.
+He works with Godot, Unity, and gameplay-focused prototyping.
 
-## Objetivos do Projeto
+## Goals
 
-- Consolidar fundamentos técnicos em Game Development
-- Desenvolver um portfólio baseado em projetos reais
-- Explorar sistemas que gerem gameplay emergente
-- Evoluir o projeto de protótipo para um jogo jogável e expansível
+- Strengthen core Game Development fundamentals
+- Build a portfolio based on real projects
+- Explore systems that support emergent gameplay
+- Grow the project from prototype to a playable, expandable game
 
-## Contato
+## Contact
 
-GitHub: https://github.com/AleDePaula
-LinkedIn: https://www.linkedin.com/in/alexandre-augusto-de-paula-pinto-74b251205/
-Instagram: @fonogamer
+- GitHub: https://github.com/AleDePaula 
+- LinkedIn: https://www.linkedin.com/in/alexandre-augusto-de-paula-pinto-74b251205/  
+- Instagram: @fonogamer  
